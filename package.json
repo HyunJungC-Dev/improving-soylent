@@ -47,5 +47,6 @@
     "eslint-plugin-html": "^6.1.2",
     "eslint-plugin-import": "^2.24.2",
     "prettier": "2.3.2"
-  }
+  },
+  "proxy": "http://192.168.9.117:5000/"
 }

@@ -48,6 +48,11 @@ function App() {
     text: nav.id.replace('_', ' ').toUpperCase()
   }));
 
+  fetch(`/api/featured`)
+    .then(response => response.json())
+    .then(myJson => {
+      console.log(JSON.stringify(myJson));
+    });
   return (
     <>
       <Navigation menubarList={navigation} />
