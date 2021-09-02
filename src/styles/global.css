@@ -1,3 +1,10 @@
+@import url('./common.css');
+
+:root {
+  --white-color: #fefefe;
+  --black-color: #101010;
+}
+
 html {
   min-height: 100.143vh;
 }
