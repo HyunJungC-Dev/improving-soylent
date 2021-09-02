@@ -28,7 +28,7 @@ type NavigationProps = {
 function MenuItem({ menuItem }: MenuItemProps) {
   return (
     <>
-      <li role="menuitem" className={styles.menuItem}>
+      <li role="menuitem" aria-haspopup={!!menuItem.dropdown} className={styles.menuItem}>
         <a href={menuItem.href} className={menuItem.dropdown ? styles.arrowUp : ''}>
           {menuItem.text}
         </a>
