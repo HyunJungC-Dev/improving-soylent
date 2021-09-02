@@ -23,3 +23,13 @@ caption.a11yHidden {
   margin: initial;
   white-space: initial;
 }
+
+.resetList {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.resetDfn {
+  font-style: normal;
+}

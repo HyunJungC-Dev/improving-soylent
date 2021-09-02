@@ -1,0 +1,29 @@
+.menuBar {
+  display: flex;
+}
+
+.menuItem {
+  padding: 1rem;
+}
+
+.menuItem:hover > .dropdownMenu {
+  display: flex;
+}
+
+.arrowUp {
+  /* after의 position absolute의 기준점이 되기 위해 */
+  position: relative;
+}
+
+.arrowUp::after {
+  content: ' ';
+  position: absolute;
+  right: -1rem;
+  top: 0.4rem;
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+  transform: rotate(135deg);
+}
