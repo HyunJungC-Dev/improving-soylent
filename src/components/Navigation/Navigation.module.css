@@ -27,3 +27,15 @@
   border-right: 1.5px solid;
   transform: rotate(135deg);
 }
+
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  background-color: pink;
+}
+
+.dropdownLinks {
+  border-left: solid 1px #121212;
+}
