@@ -22,6 +22,7 @@ caption.a11yHidden {
   height: initial;
   margin: initial;
   white-space: initial;
+  z-index: 10;
 }
 
 .resetList {
@@ -32,4 +33,8 @@ caption.a11yHidden {
 
 .resetDfn {
   font-style: normal;
+}
+
+.resetFigure {
+  margin: 0;
 }

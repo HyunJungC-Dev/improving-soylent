@@ -32,12 +32,14 @@ type NavigationProps = {
   className?: string;
 };
 
+const suuid = require('short-uuid');
+
 function Menu({ id, dropdownList, dropdownLinks }: MenuProps) {
   return (
     <section className={styles.dropdownMenu}>
       <ul role="menu" className="resetList">
         {dropdownList?.map(dropdownItem => (
-          <li key={id + 'dropdownItem'} role="menuitem">
+          <li key={suuid.generate()} role="menuitem">
             <a href={dropdownItem.category.replace(/ /gi, '-')}>
               <img src="" alt="그림" title="" role="presentation"></img>
               <dfn className="resetDfn">{dropdownItem.category}</dfn>
@@ -48,7 +50,7 @@ function Menu({ id, dropdownList, dropdownLinks }: MenuProps) {
       </ul>
       <ul className={classNames('resetList')(styles.dropdownLinks)}>
         {dropdownLinks?.map(link => (
-          <li>
+          <li key={suuid.generate()}>
             <a href={link}>{link}</a>
           </li>
         ))}
@@ -66,7 +68,7 @@ function MenuItem({ menuItem }: MenuItemProps) {
         </a>
         {menuItem.dropdown && (
           <Menu
-            id={menuItem.id + 'menuItem'}
+            id={menuItem.id}
             dropdownList={menuItem.dropdownList}
             dropdownLinks={menuItem.dropdownLinks}
           />
