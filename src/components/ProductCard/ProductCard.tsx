@@ -1,5 +1,6 @@
 import { A11yHidden } from 'components';
 import { classNames } from 'utils';
+import { useState } from 'react';
 import styles from './ProductCard.module.css';
 
 type ProductCardProps = {
@@ -44,21 +45,26 @@ export function ProductCard({
       <A11yHidden as="span" id="purchaseOption-label">
         Purchase Option
       </A11yHidden>
-      <div role="radiogroup" aria-labelledby="purchaseOption-label">
-        {/* React는 for 대신 htmlFor 써야한다. class 대신 className을 쓰는 것과 같은 이유 */}
-        <input type="radio" name="purchaseOption" value="Subscribe & Save" id="subscribeAndSave" />
-        <label htmlFor="subscribeAndSave">
+      <ul
+        id="rg-purchaseOption"
+        className={styles.radiogroup}
+        role="radiogroup"
+        aria-labelledby="label-purchaseOption"
+        aria-activedescendant="rb-subscribeAndSave"
+        tabIndex={0} // typescript에서는 tabindex를 {}로 넣어줘야 한다.
+      >
+        <li id="rb-subscribeAndSave" role="radio" aria-checked="false">
           Subscribe & Save
           <strong> {'$' + discountVariantPrice}</strong>
           <em>{'(' + (+discountVariantPrice / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}</em>
-        </label>
-        <input type="radio" name="purchaseOption" value="One-time Purchase" id="oneTimePurchase" />
-        <label htmlFor="oneTimePurchase">
+        </li>
+        <li id="rb-oneTimePurchase" role="radio" aria-checked="false">
+          {' '}
           One-time Purchase
           <strong> {'$' + oneTimePurchasePrice}</strong>
           <em>{'(' + (+oneTimePurchasePrice / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}</em>
-        </label>
-      </div>
+        </li>
+      </ul>
     </>
   );
 }
