@@ -16,6 +16,29 @@ type ProductCardProps = {
   discountPercentage: string;
 };
 
+type SelectBoxProps = {
+  selectLabel: string;
+  selectName: string;
+  itemList: string[];
+};
+
+function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
+  return (
+    <>
+      <label className={styles.selectBoxLabel} htmlFor={selectLabel + '-select'}>
+        {' '}
+        {selectLabel}
+      </label>
+      <select name={selectName}>
+        id={selectLabel + '-select'}
+        {itemList.map(item => (
+          <option value={item.trim()}>{item}</option>
+        ))}
+      </select>
+    </>
+  );
+}
+
 export function ProductCard({
   url,
   featuredImageSrc,
@@ -29,6 +52,9 @@ export function ProductCard({
   const oneTimePurchasePrice = (+discountVariantPrice / (1 - +discountPercentage / 100)).toFixed(2);
 
   const imgWidth = 250;
+
+  const selectBoxList = ['15 DAYS', '30 DAYS', '45 DAYS', '60 DAYS'];
+
   return (
     <>
       <li className={styles.productCard}>
@@ -50,7 +76,7 @@ export function ProductCard({
           </p>
         </a>
 
-        <A11yHidden as="span" id="purchaseOption-label">
+        <A11yHidden as="span" id="label-purchaseOption">
           Purchase Option
         </A11yHidden>
         <ul
@@ -77,6 +103,11 @@ export function ProductCard({
             </em>
           </li>
         </ul>
+        <SelectBox
+          selectLabel="Deliver Every:"
+          selectName="deliverEvery"
+          itemList={selectBoxList}
+        />
       </li>
     </>
   );
