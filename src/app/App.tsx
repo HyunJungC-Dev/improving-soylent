@@ -1,4 +1,4 @@
-import { Navigation } from 'components';
+import { Navigation, ProductCard } from 'components';
 
 function App() {
   const navigation = [
@@ -48,10 +48,45 @@ function App() {
     text: nav.id.replace('_', ' ').toUpperCase()
   }));
 
+  const request = async (url: string) => {
+    try {
+      const res = await fetch(`${url}`);
+
+      if (!res.ok) {
+        throw new Error('Error: 서버와의 통신이 원활하지 않습니다.');
+      }
+
+      return await res.json();
+    } catch (e: any) {
+      /* 일단 any 타입으로 해두지만 Typescript의 Error처리를 좀 더 고민해봐야한다. */
+      throw new Error(`Error: ${e.massege}`);
+    }
+  };
+
+  const init = async () => {
+    try {
+      const state = await request(`/api/featured`);
+      console.log(state); // 두번 호출 됨 -> React.Strict모드 때문
+    } catch (e: any) {
+      /* 일단 any 타입으로 해두지만 Typescript의 Error처리를 좀 더 고민해봐야한다. */
+      throw new Error(`Error: ${e.massege}`);
+    }
+  };
+  init();
+
   return (
     <>
       <Navigation menubarList={navigation} />
-      <div className="App">START PROJECT</div>
+      <ProductCard
+        url="/products/soylent-drink-banana"
+        featuredImageSrc="//cdn.shopify.com/s/files/1/0003/5933/3902/products/01_052721_SDC_US_RTD_ChocLovers_Hero_2_{width}x.png?v=1627315327"
+        bulkQuantity={12}
+        price={4500}
+        title="Soylent Chocolate Lover's Variety Pack"
+        unitName="bottle"
+        discountVariantPrice="39.90"
+        discountPercentage="11.2200000000"
+      />
     </>
   );
 }

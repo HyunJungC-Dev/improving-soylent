@@ -5,8 +5,9 @@ type A11yHiddenProps = {
   as: string | ComponentType<{ className: string }>;
   className?: string;
   children: string;
-  onClick: () => void; // 아무것도 리턴하지 않는 함수를 의미
+  onClick?: () => void; // 아무것도 리턴하지 않는 함수를 의미
   href?: string;
+  id?: string;
 };
 
 A11yHidden.defaultProps = {
