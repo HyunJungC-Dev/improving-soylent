@@ -26,7 +26,6 @@ function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
   return (
     <>
       <label className={styles.selectBoxLabel} htmlFor={selectLabel + '-select'}>
-        {' '}
         {selectLabel}
       </label>
       <select name={selectName}>
@@ -35,6 +34,15 @@ function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
           <option value={item.trim()}>{item}</option>
         ))}
       </select>
+    </>
+  );
+}
+
+function AddToCartButton() {
+  return (
+    <>
+      <Counter initialCount={0} step={1} min={0} />
+      <button>Add to Cart</button>
     </>
   );
 }
@@ -108,7 +116,7 @@ export function ProductCard({
           selectName="deliverEvery"
           itemList={selectBoxList}
         />
-        <Counter initialCount={0} step={1} min={0} />
+        <AddToCartButton />
       </li>
     </>
   );
