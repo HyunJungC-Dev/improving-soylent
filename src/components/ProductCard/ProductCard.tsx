@@ -1,4 +1,4 @@
-import { A11yHidden } from 'components';
+import { A11yHidden, Counter } from 'components';
 import { classNames } from 'utils';
 // import { classNames } from 'utils';
 // import { useState } from 'react';
@@ -108,6 +108,7 @@ export function ProductCard({
           selectName="deliverEvery"
           itemList={selectBoxList}
         />
+        <Counter initialCount={0} step={1} min={0} />
       </li>
     </>
   );
