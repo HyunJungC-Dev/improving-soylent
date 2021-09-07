@@ -43,12 +43,16 @@ type ProductCardProps = {
 
 export function ProductCard({ productInfo }: ProductCardProps) {
   const { price, subscriptions, url, featuredImage, title, bulkQuantity, unitName } = productInfo;
-  const { discount_percentage } = subscriptions;
+  const {
+    discount_percentage,
+    shipping_interval_frequency,
+    shipping_interval_unit_type,
+    has_subscription,
+    is_subscription_only
+  } = subscriptions;
   const discountPrice = ((price / 100) * (1 - +discount_percentage / 100)).toFixed(2);
 
   const imgWidth = 250;
-
-  const selectBoxList = ['15 DAYS', '30 DAYS', '45 DAYS', '60 DAYS'];
 
   return (
     <>
@@ -81,7 +85,7 @@ export function ProductCard({ productInfo }: ProductCardProps) {
         aria-activedescendant="rb-subscribeAndSave"
         tabIndex={0} // typescript에서는 tabindex를 {}로 넣어줘야 한다.
       >
-        {
+        {has_subscription && (
           <li
             id="rb-subscribeAndSave"
             role="radio"
@@ -94,22 +98,32 @@ export function ProductCard({ productInfo }: ProductCardProps) {
               <em>{'(' + (+discountPrice / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}</em>
             </span>
           </li>
-        }
-        <li
-          id="rb-oneTimePurchase"
-          role="radio"
-          aria-checked="false"
-          className={styles.purchaseOption}
-        >
-          {' '}
-          One-time Purchase
-          <span className={styles.purchaseOptionPrice}>
-            <strong> {'$' + (price / 100).toFixed(2)}</strong>
-            <em>{'(' + (+price / 100 / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}</em>
-          </span>
-        </li>
+        )}
+        {is_subscription_only && (
+          <li
+            id="rb-oneTimePurchase"
+            role="radio"
+            aria-checked="false"
+            className={styles.purchaseOption}
+          >
+            {' '}
+            One-time Purchase
+            <span className={styles.purchaseOptionPrice}>
+              <strong> {'$' + (price / 100).toFixed(2)}</strong>
+              <em>{'(' + (+price / 100 / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}</em>
+            </span>
+          </li>
+        )}
       </ul>
-      <SelectBox selectLabel="Deliver Every:" selectName="deliverEvery" itemList={selectBoxList} />
+      {has_subscription && (
+        <SelectBox
+          selectLabel="Deliver Every:"
+          selectName="deliverEvery"
+          itemList={shipping_interval_frequency
+            .split(',')
+            .map(frequency => frequency + ' ' + shipping_interval_unit_type)}
+        />
+      )}
       <AddToCartButton />
     </>
   );
