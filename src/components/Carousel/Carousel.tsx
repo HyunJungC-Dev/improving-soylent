@@ -1,6 +1,9 @@
 /* eslint-disable camelcase */
 import { ProductCard } from 'components';
 import { classNames } from 'utils';
+import { ReactComponent as SvgIconLeftArrow } from 'assets/icons/leftArrow.svg';
+import { ReactComponent as SvgIconRightArrow } from 'assets/icons/rightArrow.svg';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Carousel.module.css';
 
 const short = require('short-uuid');
@@ -37,16 +40,44 @@ export type CarouselProps = {
 };
 
 export function Carousel({ carouselList }: CarouselProps) {
+  const productCardContainer = useRef<HTMLUListElement>(null);
+  const [sliderIndex, setSliderIndex] = useState(0);
+
+  useEffect(() => {
+    const { current } = productCardContainer;
+    if (current) {
+      current.style.transition = '1s';
+      current.style.transform = `translate3d(${sliderIndex * -320 * 3}px,0,0)`;
+    }
+  });
+
   return (
     <>
-      <ul className={classNames('resetList')(styles.productCardContainer)}>
-        {/* eslint-disable-next-line max-len */}
-        {carouselList.map((product: productType) => (
-          <li key={short.generate()} className={styles.productCard}>
-            <ProductCard productInfo={product} />
-          </li>
-        ))}
-      </ul>
+      <div role="presentation" className={styles.sliderContainer}>
+        <ul
+          className={classNames('resetList')(styles.productCardContainer)}
+          ref={productCardContainer}
+        >
+          {/* eslint-disable-next-line max-len */}
+          {carouselList.map((product: productType) => (
+            <li key={short.generate()} className={styles.productCard}>
+              <ProductCard productInfo={product} />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <span
+        role="button"
+        className={classNames('svgButton')('leftbutton')}
+        onClick={() => {
+          setSliderIndex(sliderIndex => sliderIndex + 1);
+        }}
+      >
+        <SvgIconLeftArrow width="100" height="100" />
+      </span>
+      <span role="button" className={classNames('svgButton')('rightbutton')}>
+        <SvgIconRightArrow width="100" height="100" />
+      </span>
     </>
   );
 }

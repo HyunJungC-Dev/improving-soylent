@@ -46,3 +46,7 @@ a:active {
   text-decoration: none;
   color: inherit;
 }
+
+.svgButton {
+  cursor: pointer;
+}

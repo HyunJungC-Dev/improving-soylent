@@ -6,6 +6,8 @@ import { classNames } from 'utils';
 import { productType } from 'components/Carousel/Carousel';
 import styles from './ProductCard.module.css';
 
+const short = require('short-uuid');
+
 type SelectBoxProps = {
   selectLabel: string;
   selectName: string;
@@ -21,7 +23,9 @@ function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
       <select name={selectName}>
         id={selectLabel + '-select'}
         {itemList.map(item => (
-          <option value={item.trim()}>{item}</option>
+          <option key={short.generate()} value={item.trim()}>
+            {item}
+          </option>
         ))}
       </select>
     </>
