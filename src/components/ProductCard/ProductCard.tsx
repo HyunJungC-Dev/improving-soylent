@@ -31,8 +31,10 @@ function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
 function AddToCartButton() {
   return (
     <>
-      <Counter initialCount={0} step={1} min={0} />
-      <button>Add to Cart</button>
+      <div>
+        <Counter initialCount={0} step={1} min={0} />
+        <button>Add to Cart</button>
+      </div>
     </>
   );
 }
@@ -57,15 +59,14 @@ export function ProductCard({ productInfo }: ProductCardProps) {
   return (
     <>
       <a href={url}>
-        <figure className="resetFigure">
-          <img
-            className={styles.productImg}
-            src={featuredImage.replace('{width}', imgWidth.toString())}
-            alt={title}
-            title={title}
-          />
-          <figcaption className={styles.productTitle}>{title}</figcaption>
-        </figure>
+        <img
+          className={styles.productImg}
+          src={featuredImage.replace('{width}', imgWidth.toString())}
+          alt={title}
+          title={title}
+          aria-hidden
+        />
+        <h3 className={styles.productTitle}>{title}</h3>
         <p className={styles.productSimpleInfo}>
           <strong>
             {bulkQuantity + ' ' + unitName.charAt(0).toUpperCase() + unitName.slice(1) + 's'}
@@ -116,13 +117,18 @@ export function ProductCard({ productInfo }: ProductCardProps) {
         )}
       </ul>
       {has_subscription && (
-        <SelectBox
-          selectLabel="Deliver Every:"
-          selectName="deliverEvery"
-          itemList={shipping_interval_frequency
-            .split(',')
-            .map(frequency => frequency + ' ' + shipping_interval_unit_type)}
-        />
+        <>
+          <SelectBox
+            selectLabel="Deliver Every:"
+            selectName="deliverEvery"
+            itemList={shipping_interval_frequency
+              .split(',')
+              .map(frequency => frequency + ' ' + shipping_interval_unit_type)}
+          />
+          <strong className={styles.discountInfo}>
+            Subscribe & Save {(+discount_percentage).toFixed(2)}
+          </strong>
+        </>
       )}
       <AddToCartButton />
     </>

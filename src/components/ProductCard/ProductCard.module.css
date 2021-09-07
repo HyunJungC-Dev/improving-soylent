@@ -18,6 +18,10 @@
   right: 0;
 }
 
+.discountInfo {
+  order: 20;
+}
+
 .radiogroup {
   display: flex;
   flex-direction: column;
