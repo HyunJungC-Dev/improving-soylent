@@ -1,0 +1,10 @@
+.productCardContainer {
+  display: flex;
+  overflow: hidden;
+  width: calc(var(--productCardNum) * var(--productCardWidth));
+}
+
+.productCard {
+  display: block;
+  background-color: pink;
+}

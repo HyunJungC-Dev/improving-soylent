@@ -4,6 +4,9 @@
   --white-color: #fefefe;
   --black-color: #101010;
   --active-color: #47af19;
+
+  --productCardWidth: 300px;
+  --productCardNum: 3;
 }
 
 html {
@@ -14,4 +17,5 @@ body {
   margin: 0;
   background: #fff;
   font: 300 1rem/1.5 'Spoqa Hans Sans', sans-serif;
+  overflow-x: hidden;
 }

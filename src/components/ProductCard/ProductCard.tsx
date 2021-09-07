@@ -12,8 +12,7 @@ type ProductCardProps = {
   bulkQuantity: number;
   unitName: string;
   price: number;
-  discountVariantPrice: string;
-  discountPercentage: string;
+  discountPercentage: number;
 };
 
 type SelectBoxProps = {
@@ -54,10 +53,9 @@ export function ProductCard({
   bulkQuantity,
   unitName,
   price,
-  discountVariantPrice,
   discountPercentage
 }: ProductCardProps) {
-  const oneTimePurchasePrice = (+discountVariantPrice / (1 - +discountPercentage / 100)).toFixed(2);
+  const discountPrice = ((price / 100) * (1 - discountPercentage / 100)).toFixed(2);
 
   const imgWidth = 250;
 
@@ -65,59 +63,65 @@ export function ProductCard({
 
   return (
     <>
-      <li className={styles.productCard}>
-        <a href={url}>
-          <figure className="resetFigure">
-            <img
-              className={styles.productImg}
-              src={featuredImageSrc.replace('{width}', imgWidth.toString())}
-              alt={title}
-              title={title}
-            />
-            <figcaption className={styles.productTitle}>{title}</figcaption>
-          </figure>
-          <p className={styles.productSimpleInfo}>
-            <strong>
-              {bulkQuantity + ' ' + unitName.charAt(0).toUpperCase() + unitName.slice(1) + 's'}
-            </strong>
-            <em>별점</em>
-          </p>
-        </a>
+      <a href={url}>
+        <figure className="resetFigure">
+          <img
+            className={styles.productImg}
+            src={featuredImageSrc.replace('{width}', imgWidth.toString())}
+            alt={title}
+            title={title}
+          />
+          <figcaption className={styles.productTitle}>{title}</figcaption>
+        </figure>
+        <p className={styles.productSimpleInfo}>
+          <strong>
+            {bulkQuantity + ' ' + unitName.charAt(0).toUpperCase() + unitName.slice(1) + 's'}
+          </strong>
+          <em>별점</em>
+        </p>
+      </a>
 
-        <A11yHidden as="span" id="label-purchaseOption">
-          Purchase Option
-        </A11yHidden>
-        <ul
-          id="rg-purchaseOption"
-          className={styles.radiogroup}
-          role="radiogroup"
-          aria-labelledby="label-purchaseOption"
-          aria-activedescendant="rb-subscribeAndSave"
-          tabIndex={0} // typescript에서는 tabindex를 {}로 넣어줘야 한다.
-        >
-          <li id="rb-subscribeAndSave" role="radio" aria-checked="false">
+      <A11yHidden as="span" id="label-purchaseOption">
+        Purchase Option
+      </A11yHidden>
+      <ul
+        id="rg-purchaseOption"
+        className={classNames('resetList')(styles.radiogroup)}
+        role="radiogroup"
+        aria-labelledby="label-purchaseOption"
+        aria-activedescendant="rb-subscribeAndSave"
+        tabIndex={0} // typescript에서는 tabindex를 {}로 넣어줘야 한다.
+      >
+        {
+          <li
+            id="rb-subscribeAndSave"
+            role="radio"
+            aria-checked="false"
+            className={styles.purchaseOption}
+          >
             Subscribe & Save
-            <strong> {'$' + discountVariantPrice}</strong>
-            <em>
-              {'(' + (+discountVariantPrice / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}
-            </em>
+            <span className={styles.purchaseOptionPrice}>
+              <strong> {'$' + discountPrice}</strong>
+              <em>{'(' + (+discountPrice / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}</em>
+            </span>
           </li>
-          <li id="rb-oneTimePurchase" role="radio" aria-checked="false">
-            {' '}
-            One-time Purchase
-            <strong> {'$' + oneTimePurchasePrice}</strong>
-            <em>
-              {'(' + (+oneTimePurchasePrice / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}
-            </em>
-          </li>
-        </ul>
-        <SelectBox
-          selectLabel="Deliver Every:"
-          selectName="deliverEvery"
-          itemList={selectBoxList}
-        />
-        <AddToCartButton />
-      </li>
+        }
+        <li
+          id="rb-oneTimePurchase"
+          role="radio"
+          aria-checked="false"
+          className={styles.purchaseOption}
+        >
+          {' '}
+          One-time Purchase
+          <span className={styles.purchaseOptionPrice}>
+            <strong> {'$' + (price / 100).toFixed(2)}</strong>
+            <em>{'(' + (+price / 100 / +bulkQuantity).toFixed(2) + '/' + unitName + ')'}</em>
+          </span>
+        </li>
+      </ul>
+      <SelectBox selectLabel="Deliver Every:" selectName="deliverEvery" itemList={selectBoxList} />
+      <AddToCartButton />
     </>
   );
 }
