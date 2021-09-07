@@ -15,7 +15,7 @@ type subscriptionsType = {
   subscription_id: string;
 };
 
-type productType = {
+export type productType = {
   alternateImage: string;
   bulkQuantity: string;
   featuredImage: string;
@@ -32,8 +32,8 @@ type productType = {
   variants: object;
 };
 
-type CarouselProps = {
-  carouselList: any;
+export type CarouselProps = {
+  carouselList: productType[];
 };
 
 export function Carousel({ carouselList }: CarouselProps) {
@@ -41,31 +41,11 @@ export function Carousel({ carouselList }: CarouselProps) {
     <>
       <ul className={classNames('resetList')(styles.productCardContainer)}>
         {/* eslint-disable-next-line max-len */}
-        {carouselList.map(
-          ({
-            url,
-            featuredImage,
-            alternateImage,
-            title,
-            bulkQuantity,
-            unitName,
-            price,
-            subscriptions
-          }: productType) => (
-            <li key={short.generate()} className={styles.productCard}>
-              <ProductCard
-                url={url}
-                featuredImageSrc={featuredImage}
-                alternateImageSrc={alternateImage}
-                title={title}
-                bulkQuantity={+bulkQuantity}
-                unitName={unitName}
-                price={price}
-                discountPercentage={+subscriptions.discount_percentage}
-              />
-            </li>
-          )
-        )}
+        {carouselList.map((product: productType) => (
+          <li key={short.generate()} className={styles.productCard}>
+            <ProductCard productInfo={product} />
+          </li>
+        ))}
       </ul>
     </>
   );

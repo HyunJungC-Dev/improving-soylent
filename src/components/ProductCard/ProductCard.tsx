@@ -1,19 +1,10 @@
+/* eslint-disable camelcase */
 import { A11yHidden, Counter } from 'components';
 import { classNames } from 'utils';
 // import { classNames } from 'utils';
 // import { useState } from 'react';
+import { productType } from 'components/Carousel/Carousel';
 import styles from './ProductCard.module.css';
-
-type ProductCardProps = {
-  url: string;
-  featuredImageSrc: string;
-  alternateImageSrc?: string;
-  title: string;
-  bulkQuantity: number;
-  unitName: string;
-  price: number;
-  discountPercentage: number;
-};
 
 type SelectBoxProps = {
   selectLabel: string;
@@ -46,16 +37,14 @@ function AddToCartButton() {
   );
 }
 
-export function ProductCard({
-  url,
-  featuredImageSrc,
-  title,
-  bulkQuantity,
-  unitName,
-  price,
-  discountPercentage
-}: ProductCardProps) {
-  const discountPrice = ((price / 100) * (1 - discountPercentage / 100)).toFixed(2);
+type ProductCardProps = {
+  productInfo: productType;
+};
+
+export function ProductCard({ productInfo }: ProductCardProps) {
+  const { price, subscriptions, url, featuredImage, title, bulkQuantity, unitName } = productInfo;
+  const { discount_percentage } = subscriptions;
+  const discountPrice = ((price / 100) * (1 - +discount_percentage / 100)).toFixed(2);
 
   const imgWidth = 250;
 
@@ -67,7 +56,7 @@ export function ProductCard({
         <figure className="resetFigure">
           <img
             className={styles.productImg}
-            src={featuredImageSrc.replace('{width}', imgWidth.toString())}
+            src={featuredImage.replace('{width}', imgWidth.toString())}
             alt={title}
             title={title}
           />
