@@ -44,16 +44,27 @@ export function Carousel({ carouselList }: CarouselProps) {
   const PRODUCTCARD_WIDTH = 300; // px
   const PRODUCT_MARGIN_RIGHT = 20; // px
 
+  const leftArrowIcon = useRef<SVGSVGElement>(null);
+  const rightArrowIcon = useRef<SVGSVGElement>(null);
   const productCardContainer = useRef<HTMLUListElement>(null);
   const [sliderIndex, setSliderIndex] = useState(0);
 
   useEffect(() => {
-    const { current } = productCardContainer;
-    if (current) {
-      current.style.transition = '1s';
-      current.style.transform = `translate3d(${
+    /* sliderIndex에 따라 이동 */
+    if (productCardContainer.current) {
+      productCardContainer.current.style.transition = '1s';
+      productCardContainer.current.style.transform = `translate3d(${
         sliderIndex * -(PRODUCTCARD_WIDTH + PRODUCT_MARGIN_RIGHT) * PRODUCTLIST_NUM
       }px,0,0)`;
+    }
+    /* sliderIndex에 따라 왼쪽 화살표 색 변경 */
+    if (leftArrowIcon.current) {
+      leftArrowIcon.current.style.stroke = sliderIndex <= 0 ? 'gray' : 'black';
+    }
+    /* sliderIndex에 따라 오른쪽 화살표 색 변경 */
+    if (rightArrowIcon.current) {
+      rightArrowIcon.current.style.stroke =
+        sliderIndex >= Math.floor(carouselList.length / PRODUCTLIST_NUM) - 1 ? 'gray' : 'black';
     }
   });
 
@@ -64,7 +75,6 @@ export function Carousel({ carouselList }: CarouselProps) {
           className={classNames('resetList')(styles.productCardContainer)}
           ref={productCardContainer}
         >
-          {/* eslint-disable-next-line max-len */}
           {carouselList.map((product: productType) => (
             <li key={short.generate()} className={styles.productCard}>
               <ProductCard productInfo={product} />
@@ -79,7 +89,7 @@ export function Carousel({ carouselList }: CarouselProps) {
           setSliderIndex(sliderIndex => (sliderIndex > 0 ? sliderIndex - 1 : sliderIndex));
         }}
       >
-        <SvgIconLeftArrow width="100" height="100" />
+        <SvgIconLeftArrow title="Left Arrow" width="100" height="100" ref={leftArrowIcon} />
       </span>
       <span
         role="button"
@@ -92,7 +102,7 @@ export function Carousel({ carouselList }: CarouselProps) {
           );
         }}
       >
-        <SvgIconRightArrow width="100" height="100" />
+        <SvgIconRightArrow title="Right Arrow" width="100" height="100" ref={rightArrowIcon} />
       </span>
     </>
   );
