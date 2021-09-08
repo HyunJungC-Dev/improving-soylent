@@ -1,8 +1,9 @@
-import { Carousel, Navigation } from 'components';
+import { Carousel, Navigation, Router } from 'components';
 import { useState, useEffect } from 'react';
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 
 function App() {
-  const navigation = [
+  const navigationList = [
     {
       id: 'drinks',
       dropdown: true,
@@ -49,7 +50,11 @@ function App() {
     text: nav.id.replace('_', ' ').toUpperCase()
   }));
 
-  const [productList, setProductList] = useState({ 'all-drinks': [] });
+  const [productList, setProductList] = useState({
+    'all-drinks': [],
+    'all-powder': [],
+    squared: []
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,13 +65,38 @@ function App() {
     fetchData();
   }, []);
 
-  console.log('===render===');
-  console.log('productList', productList);
+  const [productTabList] = useState(
+    ['Drinks', 'Powder', 'Squared'].map(tabName => ({
+      id: tabName.toLowerCase(),
+      href: `/${tabName.toLowerCase()}`,
+      text: `Home | ${tabName}`
+    }))
+  );
+
+  console.log(productList);
 
   return (
     <>
-      <Navigation menubarList={navigation} />
-      <Carousel carouselList={productList['all-drinks']} />
+      <Navigation menubarList={navigationList} />
+      <Router>
+        {productTabList.map(productTab => (
+          <li>
+            <NavLink to={productTab.href}>{productTab.id}</NavLink>
+          </li>
+        ))}
+        <Switch>
+          <Route path="/drinks">
+            <Carousel carouselList={productList['all-drinks']} />
+          </Route>
+          <Route path="/powder">
+            <Carousel carouselList={productList['all-powder']} />
+          </Route>
+          <Route path="/squared">
+            <Carousel carouselList={productList.squared} />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </Router>
     </>
   );
 }
