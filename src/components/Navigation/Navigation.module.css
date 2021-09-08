@@ -3,7 +3,10 @@
 }
 
 .menuItem {
-  padding: 1rem;
+}
+
+.menuItem.hasDropdownMenu {
+  margin-right: 1.2rem;
 }
 
 .menuItem:hover > .dropdownMenu {
@@ -19,7 +22,7 @@
 .arrowUp::after {
   content: ' ';
   position: absolute;
-  right: -1rem;
+  right: -0.8rem;
   top: 0.4rem;
   display: block;
   width: 6px;
@@ -35,6 +38,7 @@
   width: 100vw;
   left: 0;
   background-color: pink;
+  /* top: 0; */
 }
 
 .dropdownLinks {

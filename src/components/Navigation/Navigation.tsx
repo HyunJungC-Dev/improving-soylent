@@ -62,7 +62,13 @@ function Menu({ id, dropdownList, dropdownLinks }: MenuProps) {
 function MenuItem({ menuItem }: MenuItemProps) {
   return (
     <>
-      <li role="menuitem" aria-haspopup={!!menuItem.dropdown} className={styles.menuItem}>
+      <li
+        role="menuitem"
+        aria-haspopup={!!menuItem.dropdown}
+        className={
+          menuItem.dropdown ? classNames(styles.menuItem)(styles.hasDropdownMenu) : styles.menuItem
+        }
+      >
         <a href={menuItem.href} className={menuItem.dropdown ? styles.arrowUp : ''}>
           {menuItem.text}
         </a>

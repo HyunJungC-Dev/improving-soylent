@@ -1,6 +1,7 @@
-import { Navigation, Tab } from 'components';
+import { Navigation, Tab, Logo } from 'components';
 import { useState, useEffect } from 'react';
 import { navigationList, productTabList } from './staticData';
+import styles from './App.module.css';
 
 type productListsType = {
   'all-drinks': [];
@@ -26,8 +27,13 @@ function App() {
 
   return (
     <>
-      <Navigation menubarList={navigationList} />
-      <Tab productLists={productLists} productTabList={productTabList} />
+      <header className={styles.header}>
+        <Logo width={100} />
+        <Navigation menubarList={navigationList} />
+      </header>
+      <main>
+        <Tab productLists={productLists} productTabList={productTabList} />
+      </main>
     </>
   );
 }
