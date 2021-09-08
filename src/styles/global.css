@@ -5,6 +5,9 @@
   --black-color: #101010;
   --active-color: #47af19;
 
+  --topBannerHeight: 6vh;
+  --headerHeight: 10vh;
+
   --productCardWidth: 300px;
   --productCardNum: 3;
   --productMarginRight: 20px;
@@ -21,4 +24,7 @@ body {
   font-family: Apercu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   overflow-x: hidden;
+
+  /* header 고정을 위해 */
+  padding-top: calc(var(--headerHeight) + var(--topBannerHeight));
 }

@@ -1,4 +1,3 @@
-import { SkipToContent } from 'components';
 import { classNames } from 'utils';
 import styles from './Navigation.module.css';
 
@@ -87,7 +86,6 @@ function MenuItem({ menuItem }: MenuItemProps) {
 export function Navigation({ menubarList }: NavigationProps) {
   return (
     <>
-      <SkipToContent targetId="main" text="SkipToContent" />
       <ul role="menubar" className={classNames('resetList')(styles.menuBar)}>
         {menubarList.map(menuItem => (
           <MenuItem key={menuItem.id} menuItem={menuItem} />
