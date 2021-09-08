@@ -2,16 +2,13 @@
   display: flex;
 }
 
-.menuItem {
-}
-
 .menuItem.hasDropdownMenu {
   margin-right: 1.2rem;
 }
 
 .menuItem:hover > .dropdownMenu {
   display: flex;
-  z-index: 10;
+  z-index: -1;
 }
 
 .arrowUp {
@@ -38,7 +35,6 @@
   width: 100vw;
   left: 0;
   background-color: pink;
-  /* top: 0; */
 }
 
 .dropdownLinks {

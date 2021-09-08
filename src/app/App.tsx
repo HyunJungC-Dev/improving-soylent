@@ -28,8 +28,10 @@ function App() {
   return (
     <>
       <header className={styles.header}>
-        <Logo width={100} />
-        <Navigation menubarList={navigationList} />
+        <div className={styles.forDropdownMenuLayer}>
+          <Logo width={100} />
+          <Navigation menubarList={navigationList} />
+        </div>
       </header>
       <main>
         <Tab productLists={productLists} productTabList={productTabList} />
