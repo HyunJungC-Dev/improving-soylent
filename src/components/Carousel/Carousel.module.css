@@ -1,0 +1,15 @@
+.sliderContainer {
+  overflow: hidden;
+  width: calc(var(--productCardNum) * (var(--productCardWidth) + var(--productMarginRight)));
+}
+.productCardContainer {
+  display: flex;
+  transform: translate3d(0, 0, 0);
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  margin-right: var(--productMarginRight);
+}

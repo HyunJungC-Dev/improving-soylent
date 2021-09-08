@@ -1,17 +1,26 @@
-.productCard {
-  display: block;
-  background-color: pink;
-  width: 300px;
-}
-
 .productImg {
   display: block;
   margin: 0px auto;
+  padding: calc((var(--productCardWidth) - 250px) / 2);
 }
 
 .productSimpleInfo {
   display: flex;
   justify-content: space-between;
+}
+
+.purchaseOption {
+  position: relative;
+}
+
+.purchaseOptionPrice {
+  position: absolute;
+  right: 0;
+}
+
+.discountInfo {
+  order: 20;
+  text-align: center;
 }
 
 .radiogroup {
