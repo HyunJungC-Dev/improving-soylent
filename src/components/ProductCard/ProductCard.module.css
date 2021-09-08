@@ -4,6 +4,10 @@
   padding: calc((var(--productCardWidth) - 250px) / 2);
 }
 
+.productTitle {
+  width: var(--productCardWidth);
+}
+
 .productSimpleInfo {
   display: flex;
   justify-content: space-between;
