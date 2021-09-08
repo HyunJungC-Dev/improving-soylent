@@ -1,6 +1,11 @@
-import { Carousel, Navigation, Router } from 'components';
+import { Navigation, Tab } from 'components';
 import { useState, useEffect } from 'react';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
+
+type productListsType = {
+  'all-drinks': [];
+  'all-powder': [];
+  squared: [];
+};
 
 function App() {
   const navigationList = [
@@ -50,7 +55,14 @@ function App() {
     text: nav.id.replace('_', ' ').toUpperCase()
   }));
 
-  const [productList, setProductList] = useState({
+  const productTabList = ['Drinks', 'Powder', 'Squared'].map(tabName => ({
+    id: tabName.toLowerCase(),
+    displayText: tabName,
+    href: `/${tabName.toLowerCase()}`,
+    documentTitle: `Home | ${tabName}`
+  }));
+
+  const [productLists, setProductLists] = useState<productListsType>({
     'all-drinks': [],
     'all-powder': [],
     squared: []
@@ -60,43 +72,15 @@ function App() {
     const fetchData = async () => {
       const response = await fetch(`/api/featured`);
       const data = await response.json();
-      setProductList(data);
+      setProductLists(data);
     };
     fetchData();
   }, []);
 
-  const [productTabList] = useState(
-    ['Drinks', 'Powder', 'Squared'].map(tabName => ({
-      id: tabName.toLowerCase(),
-      href: `/${tabName.toLowerCase()}`,
-      text: `Home | ${tabName}`
-    }))
-  );
-
-  console.log(productList);
-
   return (
     <>
       <Navigation menubarList={navigationList} />
-      <Router>
-        {productTabList.map(productTab => (
-          <li>
-            <NavLink to={productTab.href}>{productTab.id}</NavLink>
-          </li>
-        ))}
-        <Switch>
-          <Route path="/drinks">
-            <Carousel carouselList={productList['all-drinks']} />
-          </Route>
-          <Route path="/powder">
-            <Carousel carouselList={productList['all-powder']} />
-          </Route>
-          <Route path="/squared">
-            <Carousel carouselList={productList.squared} />
-          </Route>
-          <Redirect to="/" />
-        </Switch>
-      </Router>
+      <Tab productLists={productLists} productTabList={productTabList} />
     </>
   );
 }

@@ -5,3 +5,4 @@ export * from './ProductCard/ProductCard';
 export * from './Counter/Counter';
 export * from './Carousel/Carousel';
 export * from './Router/Router';
+export * from './Tab/Tab';
