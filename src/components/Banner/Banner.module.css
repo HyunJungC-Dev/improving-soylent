@@ -1,0 +1,36 @@
+.bannerContainer {
+  position: relative;
+}
+
+.bannerTitle {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin: 0;
+}
+
+.bannerText {
+  font-size: 0.7em;
+  margin: 1em 0;
+}
+
+.bannerImg {
+  width: 100%;
+}
+
+.bannerSection {
+  position: absolute;
+  top: 10%;
+  left: 3em;
+  width: 25%;
+  background-color: #ade8bf;
+  border: solid 3px var(--black-color);
+  padding: 1.8em;
+}
+
+.bannerButton {
+  background-color: var(--white-color);
+  border: solid 1px var(--black-color);
+  padding: 0.8em 1em;
+  cursor: pointer;
+  font-size: 0.5em;
+}

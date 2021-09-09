@@ -8,3 +8,4 @@ export * from './Router/Router';
 export * from './Tab/Tab';
 export * from './LogoLink/LogoLink';
 export * from './Header/Header';
+export * from './Banner/Banner';

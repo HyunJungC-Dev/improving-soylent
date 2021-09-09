@@ -1,4 +1,4 @@
-import { Tab, SkipToContent, Header } from 'components';
+import { Tab, SkipToContent, Header, Banner } from 'components';
 import { useState, useEffect } from 'react';
 import { productTabList } from 'assets/staticData';
 // import styles from './App.module.css';
@@ -31,6 +31,7 @@ function App() {
     <>
       <SkipToContent targetId="main" text="SkipToContent" />
       <Header></Header>
+      <Banner />
       <main>
         <Tab productLists={productLists} productTabList={productTabList} />
       </main>
