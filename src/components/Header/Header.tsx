@@ -1,5 +1,5 @@
 import { Navigation, LogoLink } from 'components';
-import { navigationList } from 'app/staticData';
+import { navigationList } from 'assets/staticData';
 import { ReactComponent as SvgIconLoginOrAccount } from 'assets/icons/loginOrAccount.svg';
 import { ReactComponent as SvgIconCart } from 'assets/icons/cart.svg';
 
@@ -43,6 +43,8 @@ function LoginOrAccountLink({ width, color }: SVGLinkProps) {
 }
 
 export function Header() {
+  const LOGO_ICON_WIDTH = 80;
+  const HEADER_ICON_WIDTH = 15;
   return (
     <>
       <aside className={styles.topBanner}>
@@ -50,10 +52,10 @@ export function Header() {
       </aside>
       <header className={styles.header}>
         <div role="presentation" className={styles.forDropdownMenuLayer}>
-          <LogoLink width={80} backgroundColor="white" />
+          <LogoLink width={LOGO_ICON_WIDTH} backgroundColor="white" />
           <Navigation menubarList={navigationList} />
-          <LoginOrAccountLink width={20} />
-          <CartLink width={20} />
+          <LoginOrAccountLink width={HEADER_ICON_WIDTH} />
+          <CartLink width={HEADER_ICON_WIDTH} />
         </div>
       </header>
     </>

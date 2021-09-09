@@ -44,10 +44,3 @@ export const navigationList = [
   href: '/' + nav.id.replace('_', ''),
   text: nav.id.replace('_', ' ').toUpperCase()
 }));
-
-export const productTabList = ['Drinks', 'Powder', 'Squared'].map(tabName => ({
-  id: tabName.toLowerCase(),
-  displayText: tabName,
-  href: `/${tabName.toLowerCase()}`,
-  documentTitle: `Home | ${tabName}`
-}));

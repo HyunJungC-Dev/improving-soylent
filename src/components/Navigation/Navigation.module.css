@@ -3,6 +3,11 @@
   padding: 0 1.8rem;
 }
 
+.menuItem {
+  display: flex;
+  align-items: center;
+}
+
 .menuItem.hasDropdownMenu {
   margin-right: 0.6rem; /* 화살표만큼 이동 */
 }

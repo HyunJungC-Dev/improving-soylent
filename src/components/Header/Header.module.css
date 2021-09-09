@@ -15,6 +15,8 @@
 }
 
 .topBanner {
+  position: relative;
+  z-index: 3;
   height: var(--topBannerHeight);
   text-align: center; /* 수평 정렬 */
   line-height: var(--topBannerHeight); /* 수직 정렬 */

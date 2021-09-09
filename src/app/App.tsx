@@ -1,6 +1,6 @@
 import { Tab, SkipToContent, Header } from 'components';
 import { useState, useEffect } from 'react';
-import { productTabList } from './staticData';
+import { productTabList } from 'assets/staticData';
 // import styles from './App.module.css';
 
 type productListsType = {
