@@ -2,6 +2,7 @@ import { classNames } from 'utils';
 import styles from './Navigation.module.css';
 
 type MenuType = {
+  categorySrc: string;
   category: string;
   description: string;
 };
@@ -35,14 +36,21 @@ const suuid = require('short-uuid');
 
 function Menu({ id, dropdownList, dropdownLinks }: MenuProps) {
   return (
-    <section className={styles.dropdownMenu}>
-      <ul role="menu" className="resetList">
+    <section tabIndex={-1} className={styles.dropdownMenu}>
+      <ul role="menu" className={classNames('resetList')(styles.dropdownList)}>
         {dropdownList?.map(dropdownItem => (
           <li key={suuid.generate()} role="menuitem">
-            <a href={dropdownItem.category.replace(/ /gi, '-')}>
-              <img src="" alt="그림" title="" role="presentation"></img>
+            <a href={dropdownItem.category.replace(/ /gi, '-')} className={styles.dropdownItemLink}>
+              <img
+                src={dropdownItem.categorySrc}
+                alt={dropdownItem.category}
+                title={dropdownItem.category}
+                role="presentation"
+                width="220px"
+                height="190px"
+              ></img>
               <dfn className="resetDfn">{dropdownItem.category}</dfn>
-              <p>{dropdownItem.description}</p>
+              <p className="resetP">{dropdownItem.description}</p>
             </a>
           </li>
         ))}
@@ -72,8 +80,8 @@ function MenuItem({ menuItem }: MenuItemProps) {
           href={menuItem.href}
           className={
             menuItem.dropdown
-              ? classNames(styles.menuitemLink)(styles.arrowUp)
-              : styles.menuitemLink
+              ? classNames(styles.menuItemLink)(styles.arrowUp)
+              : styles.menuItemLink
           }
         >
           {menuItem.text}

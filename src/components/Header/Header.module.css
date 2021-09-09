@@ -11,6 +11,8 @@
   align-items: center;
   height: var(--headerHeight);
   padding: 0 var(--headerPaddingOrMargin);
+  background-color: var(--white-color);
+  border-bottom: solid 1px #e7e7e7;
 }
 
 .topBanner {

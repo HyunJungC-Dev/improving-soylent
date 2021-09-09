@@ -11,13 +11,6 @@ type SVGLinkProps = {
   color?: string;
 };
 
-type CountryItemProps = {
-  countryInfo: {
-    countryName: string;
-    nationalFlagSrc: string;
-  };
-};
-
 function CartLink({ width, color }: SVGLinkProps) {
   const height = ((width / 7) * 8).toFixed(2);
   return (

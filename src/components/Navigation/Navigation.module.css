@@ -3,21 +3,47 @@
   padding: 0 1.8rem;
 }
 
-.menuItem {
-  display: flex;
-  align-items: center;
-}
-
 .menuItem.hasDropdownMenu {
   margin-right: 0.6rem; /* 화살표만큼 이동 */
 }
 
-.menuItem:hover > .dropdownMenu {
+.dropdownList {
   display: flex;
-  z-index: -1;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 70vw;
 }
 
-.menuitemLink {
+.dropdownMenu {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  visibility: hidden; /* display: none; 하면 transition이 안 먹음 */
+  transition: 0.2s;
+  z-index: -1;
+  padding: 3rem 2rem;
+  background-color: var(--white-color);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px var(--white-color);
+  padding: calc(var(--headerHeight) / 3) 0 calc(var(--headerHeight) / 3) 0.5rem;
+}
+
+.menuItem:hover {
+  border-bottom: solid 1px var(--active-color);
+}
+
+.menuItem:hover > .dropdownMenu {
+  visibility: visible;
+  transform: translate3d(0, var(--headerHeight), 0);
+}
+
+.menuItemLink {
   font-size: 0.5rem;
   font-weight: 500;
   letter-spacing: 0.03rem;
@@ -41,15 +67,39 @@
   border-right: 1px solid;
   transform: rotate(135deg);
 }
-
-.dropdownMenu {
-  display: none;
+.dropdownLinks {
+  position: relative;
+  padding-left: 1rem;
+}
+.dropdownLinks::before {
+  content: ' ';
   position: absolute;
-  width: 100vw;
-  left: 0;
-  background-color: pink;
+  top: 0;
+  bottom: 0;
+  left: 0.3rem;
+  width: 1px;
+  background-color: #e7e7e7;
+  margin-right: 4rem;
 }
 
-.dropdownLinks {
-  border-left: solid 1px #121212;
+.dropdownLinks a {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.dropdownItemLink {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+}
+
+.dropdownItemLink > dfn {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.dropdownItemLink > p {
+  font-size: 0.8rem;
+  color: #505050;
 }
