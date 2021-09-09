@@ -1,17 +1,53 @@
 .menuBar {
   display: flex;
-}
-
-.menuItem {
+  padding: 0 1.8rem;
 }
 
 .menuItem.hasDropdownMenu {
-  margin-right: 1.2rem;
+  margin-right: 0.6rem; /* 화살표만큼 이동 */
+}
+
+.dropdownList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 70vw;
+}
+
+.dropdownMenu {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  visibility: hidden; /* display: none; 하면 transition이 안 먹음 */
+  transition: 0.2s;
+  z-index: -1;
+  padding: 3rem 2rem;
+  background-color: var(--white-color);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px var(--white-color);
+  padding: calc(var(--headerHeight) / 3) 0 calc(var(--headerHeight) / 3) 0.5rem;
+}
+
+.menuItem:hover {
+  border-bottom: solid 1px var(--active-color);
 }
 
 .menuItem:hover > .dropdownMenu {
-  display: flex;
-  z-index: 10;
+  visibility: visible;
+  transform: translate3d(0, var(--headerHeight), 0);
+}
+
+.menuItemLink {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+  margin-right: 1rem;
 }
 
 .arrowUp {
@@ -21,26 +57,49 @@
 
 .arrowUp::after {
   content: ' ';
-  position: absolute;
-  right: -0.8rem;
-  top: 0.4rem;
   display: block;
-  width: 6px;
-  height: 6px;
-  border-top: 1.5px solid;
-  border-right: 1.5px solid;
+  position: absolute;
+  top: calc(50% - 0.1rem); /* -0.1rem은 높이인 0.2rem을 나누기 2한 것*/
+  right: -0.5rem;
+  width: 0.2rem;
+  height: 0.2rem;
+  border-top: 1px solid;
+  border-right: 1px solid;
   transform: rotate(135deg);
 }
-
-.dropdownMenu {
-  display: none;
+.dropdownLinks {
+  position: relative;
+  padding-left: 1rem;
+}
+.dropdownLinks::before {
+  content: ' ';
   position: absolute;
-  width: 100vw;
-  left: 0;
-  background-color: pink;
-  /* top: 0; */
+  top: 0;
+  bottom: 0;
+  left: 0.3rem;
+  width: 1px;
+  background-color: #e7e7e7;
+  margin-right: 4rem;
 }
 
-.dropdownLinks {
-  border-left: solid 1px #121212;
+.dropdownLinks a {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.dropdownItemLink {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+}
+
+.dropdownItemLink > dfn {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.dropdownItemLink > p {
+  font-size: 0.8rem;
+  color: #505050;
 }

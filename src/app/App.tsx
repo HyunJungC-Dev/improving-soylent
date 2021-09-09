@@ -1,7 +1,7 @@
-import { Navigation, Tab, Logo } from 'components';
+import { Tab, SkipToContent, Header } from 'components';
 import { useState, useEffect } from 'react';
-import { navigationList, productTabList } from './staticData';
-import styles from './App.module.css';
+import { productTabList } from 'assets/staticData';
+// import styles from './App.module.css';
 
 type productListsType = {
   'all-drinks': [];
@@ -19,18 +19,18 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`/api/featured`);
-      const data = await response.json();
-      setProductLists(data);
+      if (response.ok) {
+        const data = await response.json();
+        setProductLists(data);
+      }
     };
     fetchData();
   }, []);
 
   return (
     <>
-      <header className={styles.header}>
-        <Logo width={100} />
-        <Navigation menubarList={navigationList} />
-      </header>
+      <SkipToContent targetId="main" text="SkipToContent" />
+      <Header></Header>
       <main>
         <Tab productLists={productLists} productTabList={productTabList} />
       </main>

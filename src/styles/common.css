@@ -15,14 +15,14 @@ caption.a11yHidden {
 
 .a11yHidden.focusable:focus {
   visibility: initial;
-  position: static;
+  position: absolute;
   clip: auto;
   clip-path: unset;
   width: initial;
   height: initial;
   margin: initial;
   white-space: initial;
-  z-index: 10;
+  z-index: 100;
 }
 
 .resetList {
@@ -36,6 +36,10 @@ caption.a11yHidden {
 }
 
 .resetFigure {
+  margin: 0;
+}
+
+.resetP {
   margin: 0;
 }
 

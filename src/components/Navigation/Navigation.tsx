@@ -1,8 +1,8 @@
-import { SkipToContent } from 'components';
 import { classNames } from 'utils';
 import styles from './Navigation.module.css';
 
 type MenuType = {
+  categorySrc: string;
   category: string;
   description: string;
 };
@@ -36,14 +36,21 @@ const suuid = require('short-uuid');
 
 function Menu({ id, dropdownList, dropdownLinks }: MenuProps) {
   return (
-    <section className={styles.dropdownMenu}>
-      <ul role="menu" className="resetList">
+    <section tabIndex={-1} className={styles.dropdownMenu}>
+      <ul role="menu" className={classNames('resetList')(styles.dropdownList)}>
         {dropdownList?.map(dropdownItem => (
           <li key={suuid.generate()} role="menuitem">
-            <a href={dropdownItem.category.replace(/ /gi, '-')}>
-              <img src="" alt="그림" title="" role="presentation"></img>
+            <a href={dropdownItem.category.replace(/ /gi, '-')} className={styles.dropdownItemLink}>
+              <img
+                src={dropdownItem.categorySrc}
+                alt={dropdownItem.category}
+                title={dropdownItem.category}
+                role="presentation"
+                width="220px"
+                height="190px"
+              ></img>
               <dfn className="resetDfn">{dropdownItem.category}</dfn>
-              <p>{dropdownItem.description}</p>
+              <p className="resetP">{dropdownItem.description}</p>
             </a>
           </li>
         ))}
@@ -69,7 +76,14 @@ function MenuItem({ menuItem }: MenuItemProps) {
           menuItem.dropdown ? classNames(styles.menuItem)(styles.hasDropdownMenu) : styles.menuItem
         }
       >
-        <a href={menuItem.href} className={menuItem.dropdown ? styles.arrowUp : ''}>
+        <a
+          href={menuItem.href}
+          className={
+            menuItem.dropdown
+              ? classNames(styles.menuItemLink)(styles.arrowUp)
+              : styles.menuItemLink
+          }
+        >
           {menuItem.text}
         </a>
         {menuItem.dropdown && (
@@ -87,7 +101,6 @@ function MenuItem({ menuItem }: MenuItemProps) {
 export function Navigation({ menubarList }: NavigationProps) {
   return (
     <>
-      <SkipToContent targetId="main" text="SkipToContent" />
       <ul role="menubar" className={classNames('resetList')(styles.menuBar)}>
         {menubarList.map(menuItem => (
           <MenuItem key={menuItem.id} menuItem={menuItem} />

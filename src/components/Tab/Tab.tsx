@@ -1,6 +1,8 @@
 import { Carousel, Router } from 'components';
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 
+const short = require('short-uuid');
+
 type TabProps = {
   productLists: {
     'all-drinks': [];
@@ -21,7 +23,7 @@ export function Tab({ productLists, productTabList }: TabProps) {
       <Router>
         <ul role="tablist">
           {productTabList.map(tab => (
-            <li>
+            <li key={short.generate()}>
               <NavLink role="tab" to={tab.href}>
                 {tab.displayText}
               </NavLink>
