@@ -39,15 +39,14 @@ function Menu({ id, dropdownList, dropdownLinks }: MenuProps) {
     <section tabIndex={-1} className={styles.dropdownMenu}>
       <ul role="menu" className={classNames('resetList')(styles.dropdownList)}>
         {dropdownList?.map(dropdownItem => (
-          <li key={suuid.generate()} role="menuitem">
+          <li key={suuid.generate()} role="menuitem" className={styles.dropdonItem}>
             <a href={dropdownItem.category.replace(/ /gi, '-')} className={styles.dropdownItemLink}>
               <img
                 src={dropdownItem.categorySrc}
                 alt={dropdownItem.category}
                 title={dropdownItem.category}
                 role="presentation"
-                width="220px"
-                height="190px"
+                className={styles.dropdownItemImg}
               ></img>
               <dfn className="resetDfn">{dropdownItem.category}</dfn>
               <p className="resetP">{dropdownItem.description}</p>
