@@ -11,6 +11,7 @@
 
   --productCardWidth: 300px;
   --productCardNum: 3;
+  --productMarginRight: 20px;
 }
 
 html {

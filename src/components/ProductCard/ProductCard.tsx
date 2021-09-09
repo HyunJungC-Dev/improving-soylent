@@ -58,17 +58,17 @@ export function ProductCard({ productInfo }: ProductCardProps) {
   } = subscriptions;
   const discountPrice = ((price / 100) * (1 - +discount_percentage / 100)).toFixed(2);
 
-  const imgWidth = 250;
+  const imgWidth = 150;
 
   return (
     <>
       <a href={url}>
         <img
           className={styles.productImg}
-          src={featuredImage.replace('{width}', imgWidth.toString())}
           alt={title}
           title={title}
           aria-hidden
+          src={featuredImage.replace('{width}', imgWidth.toString())}
         />
         <h3 className={styles.productTitle}>{title}</h3>
         <p className={styles.productSimpleInfo}>

@@ -1,11 +1,24 @@
 .productImg {
   display: block;
   margin: 0px auto;
-  padding: calc((var(--productCardWidth) - 250px) / 2);
+  padding: calc((var(--productCardWidth) - 250px) / 2) 0;
+}
+
+@media (max-width: 1500px) {
+  .productTitle {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .productTitle {
+    width: 250px;
+  }
 }
 
 .productTitle {
-  width: var(--productCardWidth);
+  /* width: var(--productCardWidth); */
+  font-size: 0.6em;
 }
 
 .productSimpleInfo {
