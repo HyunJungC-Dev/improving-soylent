@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/role-has-required-aria-props */
-import { Navigation, LogoLink, A11yHidden } from 'components';
-import { navigationList, countryList } from 'assets/staticData';
+import { Navigation, LogoLink } from 'components';
+import { navigationList } from 'assets/staticData';
 import { ReactComponent as SvgIconLoginOrAccount } from 'assets/icons/loginOrAccount.svg';
 import { ReactComponent as SvgIconCart } from 'assets/icons/cart.svg';
+import { classNames } from 'utils';
 import styles from './Header.module.css';
-
-const short = require('short-uuid');
 
 type SVGLinkProps = {
   width: number;
@@ -22,7 +21,7 @@ type CountryItemProps = {
 function CartLink({ width, color }: SVGLinkProps) {
   const height = ((width / 7) * 8).toFixed(2);
   return (
-    <a href="/cart">
+    <a href="/cart" className={styles.svgIconLink}>
       <SvgIconCart
         aria-hidden="true"
         focusable="false"
@@ -38,7 +37,7 @@ function CartLink({ width, color }: SVGLinkProps) {
 function LoginOrAccountLink({ width, color }: SVGLinkProps) {
   const height = ((width / 7) * 8).toFixed(2);
   return (
-    <a href="/login">
+    <a href="/login" className={styles.svgIconLink}>
       <SvgIconLoginOrAccount
         aria-hidden="true"
         focusable="false"
@@ -48,16 +47,6 @@ function LoginOrAccountLink({ width, color }: SVGLinkProps) {
         fill={color}
       />
     </a>
-  );
-}
-
-function CountryItem({ countryInfo }: CountryItemProps) {
-  const { countryName, nationalFlagSrc } = countryInfo;
-  return (
-    <>
-      <span>{countryName}</span>
-      <img src={nationalFlagSrc} alt={countryName}></img>
-    </>
   );
 }
 
@@ -73,8 +62,17 @@ export function Header() {
         <div role="presentation" className={styles.forDropdownMenuLayer}>
           <LogoLink width={LOGO_ICON_WIDTH} backgroundColor="white" />
           <Navigation menubarList={navigationList} />
-          <LoginOrAccountLink width={HEADER_ICON_WIDTH} />
-          <CartLink width={HEADER_ICON_WIDTH} />
+          <ul className={classNames('resetList')(styles.userMenu)}>
+            <li className={classNames(styles.userMenuItem)(styles.storeLocatorLink)}>
+              <a href="/">STORE LOCATOR</a>
+            </li>
+            <li className={styles.userMenuItem}>
+              <LoginOrAccountLink width={HEADER_ICON_WIDTH} />
+            </li>
+            <li className={styles.userMenuItem}>
+              <CartLink width={HEADER_ICON_WIDTH} />
+            </li>
+          </ul>
         </div>
       </header>
     </>

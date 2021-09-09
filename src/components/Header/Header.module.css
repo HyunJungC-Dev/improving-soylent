@@ -10,8 +10,7 @@
   display: flex;
   align-items: center;
   height: var(--headerHeight);
-  background-color: skyblue;
-  padding: 0 3rem;
+  padding: 0 var(--headerPaddingOrMargin);
 }
 
 .topBanner {
@@ -20,8 +19,37 @@
   height: var(--topBannerHeight);
   text-align: center; /* 수평 정렬 */
   line-height: var(--topBannerHeight); /* 수직 정렬 */
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 500;
   color: #505050;
   background-color: #f7f7f7;
   letter-spacing: 0.03rem;
+}
+
+.userMenu {
+  display: flex;
+  position: absolute;
+  right: var(--headerPaddingOrMargin);
+}
+
+.userMenuItem {
+  display: flex;
+  align-items: center;
+  padding: 0 0.1rem;
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+}
+
+.storeLocatorLink::after {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: calc(var(--headerHeight) / 2.5);
+  margin-left: 0.8rem;
+  border-right: 1px solid #e7e7e7;
+}
+
+.svgIconLink {
+  padding: 0.5rem;
 }
