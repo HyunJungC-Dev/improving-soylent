@@ -68,7 +68,14 @@ function MenuItem({ menuItem }: MenuItemProps) {
           menuItem.dropdown ? classNames(styles.menuItem)(styles.hasDropdownMenu) : styles.menuItem
         }
       >
-        <a href={menuItem.href} className={menuItem.dropdown ? styles.arrowUp : ''}>
+        <a
+          href={menuItem.href}
+          className={
+            menuItem.dropdown
+              ? classNames(styles.menuitemLink)(styles.arrowUp)
+              : styles.menuitemLink
+          }
+        >
           {menuItem.text}
         </a>
         {menuItem.dropdown && (

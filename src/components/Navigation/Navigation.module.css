@@ -1,14 +1,22 @@
 .menuBar {
   display: flex;
+  padding: 0 1.8rem;
 }
 
 .menuItem.hasDropdownMenu {
-  margin-right: 1.2rem;
+  margin-right: 0.6rem; /* 화살표만큼 이동 */
 }
 
 .menuItem:hover > .dropdownMenu {
   display: flex;
   z-index: -1;
+}
+
+.menuitemLink {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.03rem;
+  margin-right: 1rem;
 }
 
 .arrowUp {
@@ -18,14 +26,14 @@
 
 .arrowUp::after {
   content: ' ';
-  position: absolute;
-  right: -0.8rem;
-  top: 0.4rem;
   display: block;
-  width: 6px;
-  height: 6px;
-  border-top: 1.5px solid;
-  border-right: 1.5px solid;
+  position: absolute;
+  top: calc(50% - 0.1rem); /* -0.1rem은 높이인 0.2rem을 나누기 2한 것*/
+  right: -0.5rem;
+  width: 0.2rem;
+  height: 0.2rem;
+  border-top: 1px solid;
+  border-right: 1px solid;
   transform: rotate(135deg);
 }
 

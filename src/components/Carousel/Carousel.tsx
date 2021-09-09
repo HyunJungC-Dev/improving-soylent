@@ -89,7 +89,15 @@ export function Carousel({ carouselList }: CarouselProps) {
           setSliderIndex(sliderIndex => (sliderIndex > 0 ? sliderIndex - 1 : sliderIndex));
         }}
       >
-        <SvgIconLeftArrow title="Left Arrow" width="100" height="100" ref={leftArrowIcon} />
+        <SvgIconLeftArrow
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          title="Left Arrow"
+          width="100"
+          height="100"
+          ref={leftArrowIcon}
+        />
       </span>
       <span
         role="button"
@@ -102,7 +110,15 @@ export function Carousel({ carouselList }: CarouselProps) {
           );
         }}
       >
-        <SvgIconRightArrow title="Right Arrow" width="100" height="100" ref={rightArrowIcon} />
+        <SvgIconRightArrow
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          title="Right Arrow"
+          width="100"
+          height="100"
+          ref={rightArrowIcon}
+        />
       </span>
     </>
   );

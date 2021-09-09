@@ -6,4 +6,5 @@ export * from './Counter/Counter';
 export * from './Carousel/Carousel';
 export * from './Router/Router';
 export * from './Tab/Tab';
-export * from './Logo/Logo';
+export * from './LogoLink/LogoLink';
+export * from './Header/Header';

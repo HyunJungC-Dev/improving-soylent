@@ -25,6 +25,6 @@ body {
     sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   overflow-x: hidden;
 
-  /* header 고정을 위해 */
-  padding-top: calc(var(--headerHeight) + var(--topBannerHeight));
+  /* header가 fiexed인 경우 고정을 위해 */
+  /* padding-top: calc(var(--headerHeight) + var(--topBannerHeight)); */
 }
