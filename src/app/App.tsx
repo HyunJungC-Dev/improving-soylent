@@ -19,8 +19,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`/api/featured`);
-      const data = await response.json();
-      setProductLists(data);
+      if (response.ok) {
+        const data = await response.json();
+        setProductLists(data);
+      }
     };
     fetchData();
   }, []);

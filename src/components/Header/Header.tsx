@@ -1,13 +1,22 @@
-import { Navigation, LogoLink } from 'components';
-import { navigationList } from 'assets/staticData';
+/* eslint-disable jsx-a11y/role-has-required-aria-props */
+import { Navigation, LogoLink, A11yHidden } from 'components';
+import { navigationList, countryList } from 'assets/staticData';
 import { ReactComponent as SvgIconLoginOrAccount } from 'assets/icons/loginOrAccount.svg';
 import { ReactComponent as SvgIconCart } from 'assets/icons/cart.svg';
-
 import styles from './Header.module.css';
+
+const short = require('short-uuid');
 
 type SVGLinkProps = {
   width: number;
   color?: string;
+};
+
+type CountryItemProps = {
+  countryInfo: {
+    countryName: string;
+    nationalFlagSrc: string;
+  };
 };
 
 function CartLink({ width, color }: SVGLinkProps) {
@@ -39,6 +48,16 @@ function LoginOrAccountLink({ width, color }: SVGLinkProps) {
         fill={color}
       />
     </a>
+  );
+}
+
+function CountryItem({ countryInfo }: CountryItemProps) {
+  const { countryName, nationalFlagSrc } = countryInfo;
+  return (
+    <>
+      <span>{countryName}</span>
+      <img src={nationalFlagSrc} alt={countryName}></img>
+    </>
   );
 }
 
