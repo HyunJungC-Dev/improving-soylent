@@ -1,4 +1,6 @@
 import { useCallback, useState } from 'react';
+import { classNames } from 'utils';
+import styles from './Counter.module.css';
 
 type CounterProps = {
   initialCount: number;
@@ -28,13 +30,15 @@ export function Counter({ initialCount, step, min, max }: CounterProps) {
     <>
       <span
         role="button"
-        className="button"
+        className={classNames('button')(styles.counterButton)}
         onClick={handleDecrement}
         // disabled={!!((min === 0 || min) && count <= min)}
       >
         -
       </span>
-      <output>{count}</output>
+      <output className={styles.counterOutput}>
+        <span>{count}</span>
+      </output>
       <span
         role="button"
         className="button"
