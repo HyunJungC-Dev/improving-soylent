@@ -1,0 +1,30 @@
+.footer {
+  background-color: var(--black-color);
+  color: var(--white-color);
+  padding: 2rem 3rem;
+}
+
+.footerInfo {
+  display: flex;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid dimgray;
+}
+
+.footerInfoTitle {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.footerInfoItem {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.footerInfoItem li {
+  margin: 0.1rem;
+}
+
+.footerInfoContainer {
+  margin-right: 5rem;
+}

@@ -1,3 +1,19 @@
+@import url('./common.css');
+
+:root {
+  --white-color: #fefefe;
+  --black-color: #212322;
+  --active-color: #47af19;
+
+  --topBannerHeight: 6vh;
+  --headerHeight: 10vh;
+  --headerPaddingOrMargin: 5rem;
+
+  --productCardWidth: 300px;
+  --productCardNum: 3;
+  --productMarginRight: 20px;
+}
+
 html {
   min-height: 100.143vh;
 }
@@ -5,5 +21,12 @@ html {
 body {
   margin: 0;
   background: #fff;
-  font: 300 1rem/1.5 'Spoqa Hans Sans', sans-serif;
+  font-weight: 300;
+  font-size: 2vw;
+  font-family: Apercu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  overflow-x: hidden;
+
+  /* header가 fiexed인 경우 고정을 위해 */
+  /* padding-top: calc(var(--headerHeight) + var(--topBannerHeight)); */
 }

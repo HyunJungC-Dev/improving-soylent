@@ -1,0 +1,25 @@
+.tabTitle {
+  font-size: 1rem;
+}
+
+.tablist {
+  display: flex;
+}
+
+.tablistItem {
+  padding: 0 0.5em;
+}
+
+.tablistLink {
+  font-size: 0.5em;
+  font-weight: 500;
+  color: rgb(155, 155, 155);
+  border-bottom: 1px solid white;
+  padding: 0.5rem 0;
+}
+
+.activeTab {
+  color: var(--black-color);
+  font-weight: 700;
+  border-bottom-color: var(--active-color);
+}
