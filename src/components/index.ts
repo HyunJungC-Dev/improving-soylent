@@ -9,3 +9,4 @@ export * from './Tab/Tab';
 export * from './LogoLink/LogoLink';
 export * from './Header/Header';
 export * from './Banner/Banner';
+export * from './Footer/Footer';
