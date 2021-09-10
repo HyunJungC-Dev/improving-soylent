@@ -20,7 +20,7 @@ function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
       <label className={styles.selectBoxLabel} htmlFor={selectLabel + '-select'}>
         {selectLabel}
       </label>
-      <select name={selectName}>
+      <select name={selectName} className={styles.selectBox}>
         id={selectLabel + '-select'}
         {itemList.map(item => (
           <option key={short.generate()} value={item.trim()}>
@@ -35,9 +35,11 @@ function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
 function AddToCartButton() {
   return (
     <>
-      <div>
+      <div className={styles.addToCart}>
         <Counter initialCount={0} step={1} min={0} />
-        <button>Add to Cart</button>
+        <span role="button" className={classNames('button')(styles.addToCartButton)}>
+          Add to Cart
+        </span>
       </div>
     </>
   );
@@ -71,11 +73,11 @@ export function ProductCard({ productInfo }: ProductCardProps) {
           src={featuredImage.replace('{width}', imgWidth.toString())}
         />
         <h3 className={styles.productTitle}>{title}</h3>
-        <p className={styles.productSimpleInfo}>
+        <p className={classNames('resetP')(styles.productSimpleInfo)}>
           <strong>
             {bulkQuantity + ' ' + unitName.charAt(0).toUpperCase() + unitName.slice(1) + 's'}
           </strong>
-          <em>별점</em>
+          <em>★★★★★ 50reviews</em>
         </p>
       </a>
 
@@ -111,7 +113,6 @@ export function ProductCard({ productInfo }: ProductCardProps) {
             aria-checked="false"
             className={styles.purchaseOption}
           >
-            {' '}
             One-time Purchase
             <span className={styles.purchaseOptionPrice}>
               <strong> {'$' + (price / 100).toFixed(2)}</strong>

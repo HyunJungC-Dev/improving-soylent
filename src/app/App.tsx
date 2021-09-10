@@ -1,7 +1,7 @@
 import { Tab, SkipToContent, Header, Banner } from 'components';
 import { useState, useEffect } from 'react';
 import { productTabList } from 'assets/staticData';
-// import styles from './App.module.css';
+import styles from './App.module.css';
 
 type productListsType = {
   'all-drinks': [];
@@ -32,7 +32,7 @@ function App() {
       <SkipToContent targetId="main" text="SkipToContent" />
       <Header></Header>
       <Banner />
-      <main>
+      <main className={styles.main}>
         <Tab productLists={productLists} productTabList={productTabList} />
       </main>
     </>

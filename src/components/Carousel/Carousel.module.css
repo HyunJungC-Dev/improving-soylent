@@ -1,4 +1,4 @@
-@media (max-width: 1500px) {
+@media (max-width: 2000px) {
   .sliderContainer {
     width: 940px;
   }
@@ -10,22 +10,28 @@
   }
 }
 
+@media (max-width: 800px) {
+  .sliderContainer {
+    width: 540px;
+  }
+}
+
 .sliderContainer {
   overflow: hidden;
 }
 
 .productCardContainer {
   display: flex;
-  background-color: skyblue;
-  /* padding: 1em; */
-  /* overflow: hidden; */
   transform: translate3d(0, 0, 0);
 }
 
 .productCard {
   display: flex;
   flex-direction: column;
-  background-color: pink;
   margin-right: var(--productMarginRight);
   /* width: 500px; */
+}
+
+.carouselbutton {
+  margin: 0 1rem;
 }

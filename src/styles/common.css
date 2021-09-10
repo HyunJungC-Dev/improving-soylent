@@ -54,3 +54,7 @@ a:active {
 .svgButton {
   cursor: pointer;
 }
+
+.button {
+  cursor: pointer;
+}

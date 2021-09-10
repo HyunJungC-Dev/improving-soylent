@@ -26,13 +26,23 @@ export function Counter({ initialCount, step, min, max }: CounterProps) {
 
   return (
     <>
-      <button onClick={handleDecrement} disabled={!!((min === 0 || min) && count <= min)}>
+      <span
+        role="button"
+        className="button"
+        onClick={handleDecrement}
+        // disabled={!!((min === 0 || min) && count <= min)}
+      >
         -
-      </button>
+      </span>
       <output>{count}</output>
-      <button onClick={handleIncrement} disabled={!!((max === 0 || max) && max <= count)}>
+      <span
+        role="button"
+        className="button"
+        onClick={handleIncrement}
+        // disabled={!!((max === 0 || max) && max <= count)}
+      >
         +
-      </button>
+      </span>
     </>
   );
 }
