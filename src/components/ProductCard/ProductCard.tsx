@@ -50,7 +50,16 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ productInfo }: ProductCardProps) {
-  const { price, subscriptions, url, featuredImage, title, bulkQuantity, unitName } = productInfo;
+  const {
+    price,
+    subscriptions,
+    url,
+    featuredImage,
+    title,
+    bulkQuantity,
+    unitName,
+    alternateImage
+  } = productInfo;
   const {
     discount_percentage,
     shipping_interval_frequency,
@@ -71,6 +80,13 @@ export function ProductCard({ productInfo }: ProductCardProps) {
           title={title}
           aria-hidden
           src={featuredImage.replace('{width}', imgWidth.toString())}
+        />
+        <img
+          className={styles.productAlternateImg}
+          alt={title}
+          title={title}
+          aria-hidden
+          src={alternateImage.replace('{width}', imgWidth.toString())}
         />
         <h3 className={styles.productTitle}>{title}</h3>
         <p className={classNames('resetP')(styles.productSimpleInfo)}>

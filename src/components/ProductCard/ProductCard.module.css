@@ -1,5 +1,20 @@
 .productImg {
   display: block;
+  visibility: visible;
+  margin: 0px auto;
+  padding: calc((var(--productCardWidth) - 250px) / 2) 0;
+}
+
+.productImg:hover {
+  display: none;
+}
+
+.productImg:hover + .productAlternateImg {
+  display: block;
+}
+
+.productAlternateImg {
+  display: none;
   margin: 0px auto;
   padding: calc((var(--productCardWidth) - 250px) / 2) 0;
 }
