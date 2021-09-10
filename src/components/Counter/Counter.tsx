@@ -32,17 +32,19 @@ export function Counter({ initialCount, step, min, max }: CounterProps) {
         role="button"
         className={classNames('button')(styles.counterButton)}
         onClick={handleDecrement}
+        tabIndex={0}
         // disabled={!!((min === 0 || min) && count <= min)}
       >
         -
       </span>
-      <output className={styles.counterOutput}>
+      <output className={styles.counterOutput} tabIndex={0}>
         <span>{count}</span>
       </output>
       <span
         role="button"
         className="button"
         onClick={handleIncrement}
+        tabIndex={0}
         // disabled={!!((max === 0 || max) && max <= count)}
       >
         +

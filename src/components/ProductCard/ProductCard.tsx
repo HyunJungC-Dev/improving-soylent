@@ -35,9 +35,9 @@ function SelectBox({ selectLabel, selectName, itemList }: SelectBoxProps) {
 function AddToCartButton() {
   return (
     <>
-      <div className={styles.addToCart}>
+      <div className={styles.addToCart} tabIndex={0}>
         <Counter initialCount={0} step={1} min={0} />
-        <span role="button" className={classNames('button')(styles.addToCartButton)}>
+        <span role="button" tabIndex={0} className={classNames('button')(styles.addToCartButton)}>
           Add to Cart
         </span>
       </div>
