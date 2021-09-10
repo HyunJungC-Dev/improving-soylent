@@ -1,0 +1,8 @@
+.counterButton {
+  padding: 0 0.3rem;
+}
+
+.counterOutput {
+  width: 30px;
+  text-align: center;
+}

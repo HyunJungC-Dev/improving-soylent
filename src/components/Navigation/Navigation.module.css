@@ -1,0 +1,115 @@
+.menuBar {
+  display: flex;
+  padding: 0 1em;
+}
+
+.menuItem.hasDropdownMenu {
+  margin-right: 1.6rem; /* 화살표만큼 0.6em 이동 */
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px var(--white-color);
+  padding: calc(var(--headerHeight) / 3) 0 calc(var(--headerHeight) / 3) 0.1em;
+  margin-right: 1rem;
+}
+
+.menuItem:hover {
+  border-bottom: solid 1px var(--active-color);
+}
+
+.menuItem:hover > .dropdownMenu {
+  visibility: visible;
+  transform: translate3d(0, var(--headerHeight), 0);
+}
+
+.menuItemLink {
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+}
+
+.arrowUp {
+  /* after의 position absolute의 기준점이 되기 위해 */
+  position: relative;
+}
+
+.arrowUp::after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: calc(50% - 0.1rem); /* -0.1rem은 높이인 0.2rem을 나누기 2한 것*/
+  right: -0.5rem;
+  width: 0.2rem;
+  height: 0.2rem;
+  border-top: 1px solid;
+  border-right: 1px solid;
+  transform: rotate(135deg);
+}
+
+.dropdownMenu {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  visibility: hidden; /* display: none; 하면 transition이 안 먹음 */
+  transition: 0.2s;
+  z-index: -1;
+  padding: 3rem 2rem;
+  background-color: var(--white-color);
+}
+
+.dropdownList {
+  display: flex;
+  flex-direction: row;
+}
+
+.dropdonItem {
+  padding: 0 1em;
+}
+
+.dropdownItemImg {
+  width: 10em;
+  height: 8em;
+}
+
+.dropdownItemLink {
+  display: flex;
+  flex-direction: column;
+  width: 10em;
+}
+
+.dropdownItemLink > dfn {
+  font-size: 0.7em;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.dropdownItemLink > p {
+  font-size: 0.6em;
+  color: #505050;
+}
+
+.dropdownLinks {
+  position: relative;
+  padding-left: 1rem;
+  width: 40%;
+}
+
+.dropdownLinks::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.3rem;
+  width: 1px;
+  background-color: #e7e7e7;
+  margin-right: 4rem;
+}
+
+.dropdownLinks a {
+  font-size: 0.6em;
+  font-weight: 500;
+}
