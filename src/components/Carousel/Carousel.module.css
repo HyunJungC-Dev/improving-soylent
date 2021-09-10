@@ -1,7 +1,25 @@
+@media (max-width: 2000px) {
+  .sliderContainer {
+    width: 940px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .sliderContainer {
+    width: 790px;
+  }
+}
+
+@media (max-width: 800px) {
+  .sliderContainer {
+    width: 540px;
+  }
+}
+
 .sliderContainer {
   overflow: hidden;
-  width: calc(var(--productCardNum) * (var(--productCardWidth) + var(--productMarginRight)));
 }
+
 .productCardContainer {
   display: flex;
   transform: translate3d(0, 0, 0);
@@ -10,6 +28,10 @@
 .productCard {
   display: flex;
   flex-direction: column;
-  background-color: pink;
   margin-right: var(--productMarginRight);
+  /* width: 500px; */
+}
+
+.carouselbutton {
+  margin: 0 1rem;
 }

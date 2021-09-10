@@ -39,10 +39,34 @@ export type CarouselProps = {
   carouselList: productType[];
 };
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowDimensions;
+}
+
 export function Carousel({ carouselList }: CarouselProps) {
   const PRODUCTLIST_NUM = 3;
-  const PRODUCTCARD_WIDTH = 300; // px
   const PRODUCT_MARGIN_RIGHT = 20; // px
+  const PRODUCTCARD_WIDTH = 300; // px
+  const { height, width } = useWindowDimensions();
 
   const leftArrowIcon = useRef<SVGSVGElement>(null);
   const rightArrowIcon = useRef<SVGSVGElement>(null);
@@ -52,9 +76,11 @@ export function Carousel({ carouselList }: CarouselProps) {
   useEffect(() => {
     /* sliderIndex에 따라 이동 */
     if (productCardContainer.current) {
-      productCardContainer.current.style.transition = '1s';
+      productCardContainer.current.style.transition = '1s transform';
       productCardContainer.current.style.transform = `translate3d(${
-        sliderIndex * -(PRODUCTCARD_WIDTH + PRODUCT_MARGIN_RIGHT) * PRODUCTLIST_NUM
+        sliderIndex *
+        -((width >= 1000 && width <= 2000 ? 300 : 250) + PRODUCT_MARGIN_RIGHT) *
+        (width <= 800 ? 2 : 3)
       }px,0,0)`;
     }
     /* sliderIndex에 따라 왼쪽 화살표 색 변경 */
@@ -64,7 +90,9 @@ export function Carousel({ carouselList }: CarouselProps) {
     /* sliderIndex에 따라 오른쪽 화살표 색 변경 */
     if (rightArrowIcon.current) {
       rightArrowIcon.current.style.stroke =
-        sliderIndex >= Math.floor(carouselList.length / PRODUCTLIST_NUM) - 1 ? 'gray' : 'black';
+        sliderIndex >= Math.floor(carouselList.length / (width <= 800 ? 2 : 3)) - 1
+          ? 'gray'
+          : 'black';
     }
   });
 
@@ -84,7 +112,7 @@ export function Carousel({ carouselList }: CarouselProps) {
       </div>
       <span
         role="button"
-        className={classNames('svgButton')('leftbutton')}
+        className={classNames('svgButton')(`leftbutton ${styles.carouselbutton}`)}
         onClick={() => {
           setSliderIndex(sliderIndex => (sliderIndex > 0 ? sliderIndex - 1 : sliderIndex));
         }}
@@ -94,8 +122,8 @@ export function Carousel({ carouselList }: CarouselProps) {
           focusable="false"
           role="presentation"
           title="Left Arrow"
-          width="100"
-          height="100"
+          width="20"
+          height="20"
           ref={leftArrowIcon}
         />
       </span>
@@ -104,7 +132,7 @@ export function Carousel({ carouselList }: CarouselProps) {
         className={classNames('svgButton')('rightbutton')}
         onClick={() => {
           setSliderIndex(sliderIndex =>
-            sliderIndex < Math.floor(carouselList.length / PRODUCTLIST_NUM) - 1
+            sliderIndex < Math.floor(carouselList.length / (width <= 800 ? 2 : 3)) - 1
               ? sliderIndex + 1
               : sliderIndex
           );
@@ -115,8 +143,8 @@ export function Carousel({ carouselList }: CarouselProps) {
           focusable="false"
           role="presentation"
           title="Right Arrow"
-          width="100"
-          height="100"
+          width="20"
+          height="20"
           ref={rightArrowIcon}
         />
       </span>
